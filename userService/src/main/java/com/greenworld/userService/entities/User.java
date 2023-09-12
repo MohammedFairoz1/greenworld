@@ -1,23 +1,27 @@
 package com.greenworld.userService.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
-@Builder
-@Table(name = "micro_users")
+@Data
+@Table(name = "micro_user")
 public class User {
     @Id
     @Column(name = "ID")
-    private int userId;
-    @Column(name = "NAME",length = 20)
+    private String userId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    private String about;
+
+    @Transient
+    private List<Rating> ratings = new ArrayList<>();
+
 }
